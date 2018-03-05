@@ -15,15 +15,37 @@
 import sys
 import codecs
 
-
-
-
 # ------------------------------------------
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(input_stream, num_top_entries, output_stream):
-    pass
-
+    result = dict()
+    for line in input_stream:
+        line = line.replace("\n", "")
+        item = line.split('\t')
+        key = item[0]
+        value = item[1]
+        value = value.replace('(',"")
+        value = value.replace(')',"")
+        value = value.rsplit(',',1)
+        subject = value[0]
+        hits = int(value[1])
+        if key not in result:
+            result[key] = list()
+        if len(result[key]) < num_top_entries:
+            result[key].insert(0,(subject,hits))
+        else:
+            shortlist = result[key]
+            swap = shortlist[0]
+            for entry in shortlist:
+                if entry.__getitem__(1) < swap.__getitem__(1):
+                    swap = entry
+            if swap.__getitem__(1) < hits:
+                result[key].remove(swap)
+                result[key].insert(0,(subject,hits))
+    for tag in result.keys():
+        for entry in result[tag]:
+            output_stream.write(tag+'\t'+str(entry)+'\n')
 # ------------------------------------------
 # FUNCTION my_main
 # ------------------------------------------

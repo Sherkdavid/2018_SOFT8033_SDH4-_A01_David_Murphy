@@ -26,28 +26,29 @@ def my_map(input_stream, languages, num_top_entries, output_stream):
     result = dict()
     for row in reader:
         #split tag to detect language
+        hits = int(row[2])
+        subject = row[1]
         tag = row[0].split('.')
         if tag[0] in languages:
             #if tag isn't listed add it
             if not result.keys().__contains__(row[0]):
                 result[row[0]] = list()
-                result[row[0]].insert(0,row)
+                result[row[0]].insert(0,(subject,hits))
             else:
                 candidates = result[row[0]]
                 if len(candidates) < num_top_entries:
-                    candidates.insert(0,row)
+                    candidates.insert(0,(subject,hits))
                 else:
                     swap = candidates[0]
                     for candidate in candidates:
-                        if candidate[2] < swap[2]:
+                        if candidate[1] < swap[1]:
                             swap = candidate
-                    if swap[2] < row[2]:
+                    if swap[1] < hits:
                         candidates.remove(swap)
-                        candidates.insert(0,row)
+                        candidates.insert(0,(subject,hits))
     for key in result.keys():
         for candidate in result[key]:
-            value = (candidate[1],int(candidate[2]))
-            output_stream.write(candidate[0] + "\t"+str(value)+"\n")
+            output_stream.write(key+"\t"+str(candidate)+"\n")
 # ------------------------------------------
 # FUNCTION my_main
 # ------------------------------------------
