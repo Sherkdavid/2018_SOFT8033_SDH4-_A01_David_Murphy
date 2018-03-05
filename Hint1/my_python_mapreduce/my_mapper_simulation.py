@@ -26,10 +26,10 @@ def get_parent_directory(d):
     rev = d[::-1]
 
     # 3. We look for the '\\' character representing the parent folder
-    if "\\" in rev:
+    if "/" in rev:
         # 3.1. If there is, we take all the name of the directory until the last '\\', which turns to be the first one when the
         # folder string name has been reversed.
-        i = rev.index("\\")
+        i = rev.index("/")
         sub_rev = rev[(i+1):len(rev)]
         # 3.2. We reverse the parent folder again so as to make the string going forward once again
         res = sub_rev[::-1]
@@ -112,7 +112,7 @@ def simulating_my_map(directory, extension, output_stream, languages, num_top_en
 def my_main(ext, o_file_name, languages, num_top_entries):
     # 1. Set the directory
     current_dir = os.getcwd()
-    dataset_dir = get_parent_directory(current_dir) + "\\my_dataset"
+    dataset_dir = get_parent_directory(current_dir) + "/my_dataset"
 
     # 2. We open the file for writing
     output_file = codecs.open(o_file_name, "w", encoding='utf-8')
