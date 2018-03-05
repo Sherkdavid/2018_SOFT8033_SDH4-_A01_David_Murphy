@@ -19,7 +19,12 @@ import codecs
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(input_stream, output_stream):
-    pass
+    total = 0
+    for line in input_stream:
+        line = line.replace('\n','')
+        line = line.split('\t')
+        total += int(line[1])
+    output_stream.write("total_hits\t"+str(total))
 
 # ------------------------------------------
 # FUNCTION my_main

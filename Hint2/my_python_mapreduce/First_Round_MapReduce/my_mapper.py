@@ -19,7 +19,12 @@ import codecs
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(input_stream, output_stream):
-    pass
+    total = 0
+    result = dict()
+    for line in input_stream:
+        line = line.split(' ')
+        total += int(line[2])
+    output_stream.write(input_stream.name+"\t"+str(total)+"\n")
 
 # ------------------------------------------
 # FUNCTION my_main
@@ -48,7 +53,7 @@ def my_main(debug, i_file_name, o_file_name):
 # ---------------------------------------------------------------
 if __name__ == '__main__':
     # 1. Input parameters
-    debug = True
+    debug = False
 
     i_file_name = "pageviews-20180219-100000_0.txt"
     o_file_name = "mapResult.txt"
