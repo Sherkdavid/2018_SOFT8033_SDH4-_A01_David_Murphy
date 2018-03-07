@@ -19,8 +19,35 @@ import sys
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(input_stream, per_language_or_project, output_stream):
-    pass
 
+    #language
+    if per_language_or_project :
+        result = dict()
+        for line in input_stream:
+            line = line.split(' ')
+            lang = line[0].split('.')[0]
+            if result.__contains__(lang):
+                result[lang] += int(line[2])
+            else:
+                result[lang] = int(line[2])
+        for key in result.keys():
+            output_stream.write(key+'\t'+str(result[key])+'\n')
+    else:
+        result = dict()
+        for line in input_stream:
+            line = line.split(' ')
+            tag = line[0]
+            hits = int(line[2])
+            if tag.__contains__('.'):
+                project = tag[tag.rindex('.'):]
+            else:
+                project = "wikipedia"
+            if project in result:
+                result[project] += hits
+            else:
+                result[project] = hits
+        for key in result.keys():
+            output_stream.write(key + '\t' + str(result[key]) + '\n')
 # ------------------------------------------
 # FUNCTION my_main
 # ------------------------------------------
@@ -52,8 +79,8 @@ if __name__ == '__main__':
 
     i_file_name = "pageviews-20180219-100000_0.txt"
     o_file_name = "mapResult.txt"
-
-    per_language_or_project = True # True for language and False for project
+    round_one = codecs.open("round_one.txt", "r", encoding="utf-8")
+    per_language_or_project = False # True for language and False for project
 
     # 2. Call to the function
     my_main(debug, i_file_name, o_file_name, per_language_or_project)

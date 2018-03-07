@@ -88,7 +88,7 @@ def simulating_my_map(directory, extension, output_stream):
 # ------------------------------------------
 def my_main(ext, o_file_name):
     # 1. Set the directory
-    dataset_dir = "C://Users//Ignacio.Castineiras//Desktop//Big Data Analytics//2. Code Examples//L07-08. MapReduce Jobs//Percentage of Words//my_dataset"
+    dataset_dir = "C:\\Users\\Daithi\\PycharmProjects\\2018_SOFT8033_SDH4-_A01_David_Murphy\\my_dataset"
     # 2. We open the file for writing
     output_file = codecs.open(o_file_name, "w", encoding='utf-8')
 

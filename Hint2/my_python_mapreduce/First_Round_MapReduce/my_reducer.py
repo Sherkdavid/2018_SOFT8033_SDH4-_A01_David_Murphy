@@ -56,6 +56,6 @@ if __name__ == '__main__':
     debug = True
 
     i_file_name = "sort_simulation.txt"
-    o_file_name = "reduce_simulation.txt"
+    o_file_name = "round_one.txt"
 
     my_main(debug, i_file_name, o_file_name)

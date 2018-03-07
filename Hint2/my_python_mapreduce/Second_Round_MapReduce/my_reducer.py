@@ -19,8 +19,20 @@ import codecs
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(input_stream, total_words, output_stream):
-    pass
-
+    result = dict()
+    for line in input_stream:
+        line.replace('\n','')
+        line = line.split('\t')
+        tag = line[0]
+        hits = int(line[1])
+        if tag in result:
+            result[tag]+=hits
+        else:
+            result[tag]=hits
+    for key in result.keys():
+        percent = ((result[key]/total_words)*100)
+        print(key,result[key],percent)
+        output_stream.write(key+'\t'+str((result[key],percent))+'\n')
 # ------------------------------------------
 # FUNCTION my_main
 # ------------------------------------------
@@ -49,11 +61,10 @@ def my_main(debug, i_file_name, total_words, o_file_name):
 if __name__ == '__main__':
     # 1. Input parameters
     debug = True
-
     # Replace this with the result of the first stage
-    total_words = 0
+    total_words = float(21996631)
 
     i_file_name = "sort_simulation.txt"
-    o_file_name = "reduce_simulation.txt"
+    o_file_name = "round_one.txt"
 
     my_main(debug, i_file_name, total_words, o_file_name)

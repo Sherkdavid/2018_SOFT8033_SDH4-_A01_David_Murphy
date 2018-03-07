@@ -20,7 +20,6 @@ import codecs
 # ------------------------------------------
 def my_map(input_stream, output_stream):
     total = 0
-    result = dict()
     for line in input_stream:
         line = line.split(' ')
         total += int(line[2])
