@@ -3,4 +3,4 @@
 Python map-reduce simulation. Done as part of academic coursework in Big Data and Analytics.
 
 Code skeleton is provided to simulate map-reduce. The requirement is to complete the my_mapper.my_map and my_reduce.my_reduce functions to
-carry out processing in a big data structure.
+carry out processing of simulated "big data".
